@@ -22,6 +22,8 @@ Route::get('/inertia-test', function () {
     }
 );
 
+Route::get('/inertia/index', [InertiaTestController::class, 'index']) -> name('inertia.index');
+
 //Inertia: ビューファイルを読み込む時の書き方
 //Inertia::render('コンポーネント名(viewのファイル名)', [変数名])
 Route::get('/', function () {
