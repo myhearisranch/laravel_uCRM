@@ -31,8 +31,11 @@ class InertiaTestController extends Controller
 
     public function store(Request $request)
     {
+        // SQLSTATE[42S02]: Base table or view not found: 1146 Table 'laravel_ucrm.posts' doesn't exist
+        //title'   => ['required', 'unique:posts', 'max:20'],だと、
+        //投稿時にunique:posts, postsテーブルのtitleカラムの中で一意かをチェックする => そもそもpostsテーブルはないので、エラーが発生した
         $request->validate([
-            'title'   => ['required', 'unique:posts', 'max:20'],
+            'title'   => ['required', 'max:20'],
             'content' => ['required'],
         ]);
 
@@ -41,6 +44,9 @@ class InertiaTestController extends Controller
         $inertiaTest->content = $request->content;
         $inertiaTest->save();
 
-        return to_route('inertia.index');
+        return to_route('inertia.index')
+        ->with([
+            'message' => '登録しました。'
+        ]);
     }
 }

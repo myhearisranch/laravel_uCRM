@@ -39,6 +39,12 @@ class HandleInertiaRequests extends Middleware
                     'location' => $request->url(),
                 ]);
             },
+
+            //Laravelのセッションに保存された「フラッシュメッセージ」を、
+            //Inertia.jsを通じてフロントエンドのVue（またはReact/Svelte）コンポーネントに渡すための処理
+            'flash' => [
+                'message' => fn() => $request->session()->get('message')
+            ]
         ]);
     }
 }
