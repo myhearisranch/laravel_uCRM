@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\InertiaTestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,11 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/inertia-test', function () {
+    return Inertia::render('InertiaTest');
+    }
+);
 
 //Inertia: ビューファイルを読み込む時の書き方
 //Inertia::render('コンポーネント名(viewのファイル名)', [変数名])
