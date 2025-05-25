@@ -22,10 +22,16 @@ Route::get('/inertia-test', function () {
     }
 );
 
+Route::get('/component-test', function() {
+    return Inertia::render('Inertia/ComponentTest');
+    }
+);
+
 Route::get('/inertia/index', [InertiaTestController::class, 'index']) -> name('inertia.index');
 Route::get('/inertia/create', [InertiaTestController::class, 'create'])->name('inertia.create');
 Route::post('/inertia', [InertiaTestController::class, 'store'])->name('inertia.store');
 Route::get('/inertia/show/{id}', [InertiaTestController::class, 'show'])->name('inertia.show');
+Route::delete('/inertia/{id}', [InertiaTestController::class, 'delete'])->name('inertia.delete');
 
 //Inertia: ビューファイルを読み込む時の書き方
 //Inertia::render('コンポーネント名(viewのファイル名)', [変数名])
